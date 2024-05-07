@@ -13,7 +13,11 @@ namespace CohenSutherland
         }
 
         public bool Cull => (code1 & code2) != 0;
-
         public bool CullOff => (code1 | code2) == 0;
+
+        public override string ToString()
+        {
+            return base.ToString() + $" Cull:{Cull} CullOff:{CullOff}";
+        }
     }
 }

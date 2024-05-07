@@ -6,7 +6,6 @@ namespace CohenSutherland
     public class CohenSutherlandCore
     {
         public static int[] Ops;
-
         static CohenSutherlandCore()
         {
             Ops = new int[] { 0b1111, 0b1000, 0b0100, 0b0010, 0b0001 };
@@ -51,7 +50,7 @@ namespace CohenSutherland
                 if ((code & Ops[i]) != 0)
                 {
                     p = Inserts[i].Invoke();
-                    code &= ~Ops[i];
+                    code = Calculate(p);
                     break;
                 }
             }

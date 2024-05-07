@@ -23,4 +23,8 @@ public class EdgeData
         return new Vector2(x, y);
     }
 
+    public override string ToString()
+    {
+        return $"p1:{p1} p2:{p2}";
+    }
 }

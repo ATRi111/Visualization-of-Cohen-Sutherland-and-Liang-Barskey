@@ -17,7 +17,7 @@ namespace Services
         /// <summary>
         /// 刷新线段，参数:EdgeData
         /// </summary>
-        RefreshEdge,
+        AfterRefreshEdge,
         /// <summary>
         /// 使线段回到初始状态
         /// </summary>
@@ -26,5 +26,13 @@ namespace Services
         /// 算法启动
         /// </summary>
         Launch,
+        /// <summary>
+        /// 算法前进一步
+        /// </summary>
+        MoveNext,
+        /// <summary>
+        /// 算法状态改变，参数:算法能否继续执行
+        /// </summary>
+        StateChange,
     }
 }

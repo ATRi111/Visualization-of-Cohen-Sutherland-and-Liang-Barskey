@@ -18,17 +18,17 @@ public class DraggableVertex : MonoBehaviour, IDragHandler
 
     private void OnEnable()
     {
-        eventSystem.AddListener<EdgeData>(EEvent.RefreshEdge, AfterRefreshEdge);
-        eventSystem.AddListener(EEvent.ResetEdge, AfterResetEdge);
+        eventSystem.AddListener<EdgeData>(EEvent.AfterRefreshEdge, AfterRefreshEdge);
+        eventSystem.AddListener(EEvent.ResetEdge, ResetEdge);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<EdgeData>(EEvent.RefreshEdge, AfterRefreshEdge);
-        eventSystem.RemoveListener(EEvent.ResetEdge, AfterResetEdge);
+        eventSystem.RemoveListener<EdgeData>(EEvent.AfterRefreshEdge, AfterRefreshEdge);
+        eventSystem.RemoveListener(EEvent.ResetEdge, ResetEdge);
     }
 
-    private void AfterResetEdge()
+    private void ResetEdge()
     {
         spriteRenderer.enabled = true;
         canvas.SetActive(true);

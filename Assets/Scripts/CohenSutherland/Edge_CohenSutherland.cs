@@ -10,7 +10,8 @@ namespace CohenSutherland
             (vertex1 as Vertex_CohenSutherland).SetCode(data.code1);
             (vertex2 as Vertex_CohenSutherland).SetCode(data.code2);
 
-            //显示
+            if (data.Cull)
+                lineRenderer.enabled = false;
         }
     }
 }
