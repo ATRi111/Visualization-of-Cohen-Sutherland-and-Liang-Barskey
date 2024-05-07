@@ -1,10 +1,12 @@
+using Services;
+using Services.Event;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class AreaPanel : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler
+public class AreaPanel : MonoBehaviour
 {
     private RectTransform rectTransform;
+    private IEventSystem eventSystem;
     private CanvasGrounpPlus canvas;
     private TextMeshProUGUI tmp;
     [HideInInspector]
@@ -15,23 +17,28 @@ public class AreaPanel : MonoBehaviour , IPointerEnterHandler , IPointerExitHand
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponent<CanvasGrounpPlus>();
         tmp = GetComponentInChildren<TextMeshProUGUI>();
+        eventSystem = ServiceLocator.Get<IEventSystem>();
+    }
+
+    private void OnEnable()
+    {
+        eventSystem.AddListener<bool>(EEvent.ShowArea, SetVisible);
+    }
+
+    private void OnDisable()
+    {
+        eventSystem.RemoveListener<bool>(EEvent.ShowArea, SetVisible);
     }
 
     public void SetRange(Vector3 min, Vector3 max)
     {
-        canvas.Visible = true;
         tmp.text = number;
         rectTransform.position = Camera.main.WorldToScreenPoint((max + min) / 2);
         rectTransform.sizeDelta = Camera.main.WorldToScreenPoint(max) - Camera.main.WorldToScreenPoint(min);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private void SetVisible(bool visible)
     {
-        canvas.Visible = false;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        canvas.Visible = true;
+        canvas.Visible = visible;
     }
 }

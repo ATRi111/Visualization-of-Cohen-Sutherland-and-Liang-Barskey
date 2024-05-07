@@ -1,5 +1,6 @@
 using Services;
 using Services.Event;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 

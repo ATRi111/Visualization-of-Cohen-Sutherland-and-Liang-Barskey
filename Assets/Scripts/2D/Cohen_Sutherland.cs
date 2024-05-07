@@ -28,7 +28,7 @@ public class Cohen_Sutherland : MonoBehaviour
     {
         gridGenerator.GenerateGrid();
         gridGenerator.GenerateLine(xs, ys);
-        areaManager.GenerateAreas(xs_, ys_);
+        areaManager.SetAreas(xs_, ys_);
     }
 
     private void OnDrawGizmos()

@@ -10,7 +10,9 @@ namespace Services
         /// 加载场景后（至少一帧以后），参数：刚加载好的场景号
         /// </summary>
         AfterLoadScene,
-        PlayerHPChange,
-        PlayerEnergyChange,
+        /// <summary>
+        /// 显示或隐藏Area
+        /// </summary>
+        ShowArea,
     }
 }

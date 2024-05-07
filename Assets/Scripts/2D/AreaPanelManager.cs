@@ -20,14 +20,13 @@ public class AreaPanelManager : MonoBehaviour
         }
     }
 
-    public void GenerateAreas(int[] xs,int[] ys)
+    public void SetAreas(int[] xs,int[] ys)
     {
         int count = 0;
         for (int j = 0; j < 3; j++)
         {
             for (int i = 0; i < 3; i++)
             {
-          
                 Vector3 min = GridGenerator2D.IndexToWorld(xs[i], ys[j]);
                 Vector3 max = GridGenerator2D.IndexToWorld(xs[i + 1], ys[j + 1]);
                 panels[count].SetRange(min, max);
