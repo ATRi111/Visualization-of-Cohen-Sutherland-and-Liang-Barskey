@@ -15,8 +15,8 @@ namespace CohenSutherland
         private AreaPanelManager areaManager;
         private GridGenerator gridGenerator;
         private IEventSystem eventSystem;
-        private DraggableVertex[] draggableVertices;
-
+        private DraggableVertex[] vertices;
+        private LineRenderer lineRenderer;
         private CohenSutherlandCore core;
         public RectInt range;
 
@@ -32,10 +32,9 @@ namespace CohenSutherland
             eventSystem = ServiceLocator.Get<IEventSystem>();
             gridGenerator = GetComponent<GridGenerator>();
             core = new CohenSutherlandCore();
-            draggableVertices = GetComponentsInChildren<DraggableVertex>();
+            vertices = GetComponentsInChildren<DraggableVertex>();
+            lineRenderer = GetComponent<LineRenderer>();
             core.Refresh += Refresh;
-
-            DraggableVertex[] vertices = GetComponentsInChildren<DraggableVertex>();
             foreach (DraggableVertex vertex in vertices)
             {
                 vertex.range = new Rect(range.position, range.size);
@@ -62,9 +61,19 @@ namespace CohenSutherland
             gridGenerator.GenerateLine(range, xs, ys);
         }
 
+        private void Update()
+        {
+            Vector3[] points = new Vector3[vertices.Length];
+            for (int i = 0; i < points.Length; i++)
+            {
+                points[i] = vertices[i].transform.position;
+            }
+            lineRenderer.SetPositions(points);
+        }
+
         private void Launch()
         {
-            core.Initialize(xMin, yMin, xMax, yMax, draggableVertices[0].transform.position, draggableVertices[1].transform.position);
+            core.Initialize(xMin, yMin, xMax, yMax, vertices[0].transform.position, vertices[1].transform.position);
         }
         private void ResetEdge()
         {

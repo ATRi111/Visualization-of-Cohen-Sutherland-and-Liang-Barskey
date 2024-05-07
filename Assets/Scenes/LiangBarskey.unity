@@ -1601,19 +1601,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2176599904048737081, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
       propertyPath: m_Name
-      value: Vertex_CohenSutherland (1)
+      value: Vertex_CohenSutherland
       objectReference: {fileID: 0}
     - target: {fileID: 6498710287848825631, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
       propertyPath: m_text
       value: P2
       objectReference: {fileID: 0}
+    - target: {fileID: 7043016976440011436, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.64
+      objectReference: {fileID: 0}
     - target: {fileID: 8806772280238086962, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.81
+      value: -2.87
       objectReference: {fileID: 0}
     - target: {fileID: 8806772280238086962, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.28
       objectReference: {fileID: 0}
     - target: {fileID: 8806772280238086962, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2138,8 +2142,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8521855714059625021}
   - {fileID: 1221420839}
+  - {fileID: 8521855714059625021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &1647612946
@@ -2185,7 +2189,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

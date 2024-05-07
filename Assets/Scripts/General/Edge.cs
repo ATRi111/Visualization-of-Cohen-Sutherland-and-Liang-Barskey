@@ -7,7 +7,7 @@ public class Edge : MonoBehaviour
 {
     protected IEventSystem eventSystem;
     protected LineRenderer lineRenderer;
-    public Vertex vertex1, vertex2;
+    protected Vertex vertex1, vertex2;
 
     protected TextMeshProUGUI tmp;
 
@@ -16,6 +16,9 @@ public class Edge : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
         tmp = GetComponentInChildren<TextMeshProUGUI>();
+        Vertex[] vertices = GetComponentsInChildren<Vertex>();
+        vertex1 = vertices[0];
+        vertex2 = vertices[1];
     }
 
     protected virtual void OnEnable()
