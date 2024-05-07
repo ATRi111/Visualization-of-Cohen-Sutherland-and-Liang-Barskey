@@ -23,13 +23,15 @@ namespace CohenSutherland
             isRunning = false;
         }
 
-        public void Initialize(int xMin, int yMin, int xMax, int yMax, Vector2 p1, Vector2 p2)
+        public void Initialize(RangeManager rangeManager)
         {
             isRunning = true;
-            this.xMin = xMin;
-            this.yMin = yMin;
-            this.xMax = xMax;
-            this.yMax = yMax;
+            xMin = rangeManager.xMin;
+            yMin = rangeManager.yMin;
+            xMax = rangeManager.xMax;
+            yMax = rangeManager.yMax;
+            Vector3 p1 = rangeManager.vertices[0].transform.position;
+            Vector3 p2 = rangeManager.vertices[1].transform.position;
             data = new EdgeData_CohenSutherland(p1, p2, Calculate(p1), Calculate(p2));
             Inserts = new Func<Vector2>[] { null, Intersect1, Intersect2, Intersect3, Intersect4 };
             Refresh?.Invoke();
