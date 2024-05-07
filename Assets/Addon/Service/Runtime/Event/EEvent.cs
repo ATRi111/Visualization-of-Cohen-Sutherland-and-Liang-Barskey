@@ -14,5 +14,17 @@ namespace Services
         /// 显示或隐藏Area
         /// </summary>
         ShowArea,
+        /// <summary>
+        /// 刷新线段，参数:EdgeData
+        /// </summary>
+        RefreshEdge,
+        /// <summary>
+        /// 使线段回到初始状态
+        /// </summary>
+        ResetEdge,
+        /// <summary>
+        /// 算法启动
+        /// </summary>
+        Launch,
     }
 }
