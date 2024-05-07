@@ -33,6 +33,7 @@ public class RangeManager : MonoBehaviour
     {
         areaManager.SetAreas(xs, ys);
         gridGenerator.GenerateLine(range, xs, ys);
+        gridGenerator.GenerateGrid(range);
     }
 
     private void Update()
