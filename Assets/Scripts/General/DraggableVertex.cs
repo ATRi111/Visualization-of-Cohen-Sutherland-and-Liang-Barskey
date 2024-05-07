@@ -1,5 +1,6 @@
 using Services;
 using Services.Event;
+using Tools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,8 @@ public class DraggableVertex : MonoBehaviour, IDragHandler
     private IEventSystem eventSystem;
     private SpriteRenderer spriteRenderer;
     private GameObject canvas;
+    [HideInInspector]
+    public Rect range;
 
     private void Awake()
     {
@@ -44,6 +47,8 @@ public class DraggableVertex : MonoBehaviour, IDragHandler
     {
         float z = transform.position.z;
         Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(temp.x, temp.y, z);
+        temp.ResetZ(z);
+        if(range.Contains(temp))
+            transform.position = new Vector3(temp.x, temp.y, z);
     }
 }

@@ -34,6 +34,12 @@ namespace CohenSutherland
             core = new CohenSutherlandCore();
             draggableVertices = GetComponentsInChildren<DraggableVertex>();
             core.Refresh += Refresh;
+
+            DraggableVertex[] vertices = GetComponentsInChildren<DraggableVertex>();
+            foreach (DraggableVertex vertex in vertices)
+            {
+                vertex.range = new Rect(range.position, range.size);
+            }
         }
 
         private void OnEnable()
