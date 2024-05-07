@@ -9,9 +9,6 @@ public class GridGenerator2D : MonoBehaviour
         return new Vector3(x, y, 0);
     }
 
-    [HideInInspector]
-    public RectInt range;
-
     private IObjectManager objectManager;
     private GameObject lines;
     
@@ -23,7 +20,7 @@ public class GridGenerator2D : MonoBehaviour
         lines.transform.localPosition = Vector3.zero;
     }
 
-    public void GenerateGrid()
+    public void GenerateGrid(RectInt range)
     {
         for (int i = range.xMin; i < range.xMax; i++) 
         {
@@ -34,7 +31,7 @@ public class GridGenerator2D : MonoBehaviour
         }
     }
 
-    public void GenerateLine(int[] xs, int[] ys)
+    public void GenerateLine(RectInt range, int[] xs, int[] ys)
     {
         ObjectPoolUtility.RecycleMyObjects(lines);
         foreach (int x in xs)

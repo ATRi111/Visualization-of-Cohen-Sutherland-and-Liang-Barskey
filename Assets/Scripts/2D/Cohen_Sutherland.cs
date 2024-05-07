@@ -3,32 +3,26 @@ using UnityEngine;
 public class Cohen_Sutherland : MonoBehaviour
 {
     [SerializeField]
-    private GridGenerator2D gridGenerator;
-    [SerializeField]
     private AreaPanelManager areaManager;
+    private GridGenerator2D gridGenerator;
     public RectInt range;
 
     public int xMin, xMax, yMin, yMax;
 
     private int[] xs;
     private int[] ys;
-    private int[] xs_;
-    private int[] ys_;
     
     private void Awake()
     {
-        gridGenerator.range = range;
-        xs = new int[] { xMin, xMax };
-        ys = new int[] { yMin, yMax };
-        xs_ = new int[] { range.xMin, xMin, xMax, range.xMax };
-        ys_ = new int[] { range.yMin, yMin, yMax, range.yMax };
+        xs = new int[] { range.xMin, xMin, xMax, range.xMax };
+        ys = new int[] { range.yMin, yMin, yMax, range.yMax };
+        gridGenerator = GetComponent<GridGenerator2D>();
     }
 
     private void Start()
     {
-        gridGenerator.GenerateGrid();
-        gridGenerator.GenerateLine(xs, ys);
-        areaManager.SetAreas(xs_, ys_);
+        areaManager.SetAreas(xs, ys);
+        gridGenerator.GenerateLine(range, xs, ys);
     }
 
     private void OnDrawGizmos()

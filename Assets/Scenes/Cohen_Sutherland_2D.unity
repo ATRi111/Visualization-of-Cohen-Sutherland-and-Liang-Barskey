@@ -181,7 +181,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 243889534}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18, y: 10, z: -10}
+  m_LocalPosition: {x: 25, y: 15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -382,32 +382,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 715863759}
-  - component: {fileID: 715863758}
   - component: {fileID: 715863760}
+  - component: {fileID: 715863761}
   m_Layer: 0
-  m_Name: GridGenerator2D
+  m_Name: Cohen_Sutherland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &715863758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715863757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a41f4bb8ac8eb345b7188f22b599fba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range:
-    x: -10
-    y: -10
-    width: 20
-    height: 20
 --- !u!4 &715863759
 Transform:
   m_ObjectHideFlags: 0
@@ -435,17 +418,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8944d3c4063f3946a8135d645cbbdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridGenerator: {fileID: 715863758}
   areaManager: {fileID: 1329876701}
   range:
     x: 0
     y: 0
-    width: 20
-    height: 20
-  xMin: 5
-  xMax: 10
-  yMin: 5
-  yMax: 8
+    width: 30
+    height: 30
+  xMin: 10
+  xMax: 20
+  yMin: 10
+  yMax: 20
+--- !u!114 &715863761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715863757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a41f4bb8ac8eb345b7188f22b599fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1298235332
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,8 +477,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 483, y: 285}
-  m_SizeDelta: {x: 160, y: 55.4698}
+  m_AnchoredPosition: {x: 335.5364, y: 193.2512}
+  m_SizeDelta: {x: 106.9272, y: 36.9674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298235334
 MonoBehaviour:
@@ -629,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -847,8 +841,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
