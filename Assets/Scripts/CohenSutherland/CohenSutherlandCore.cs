@@ -5,12 +5,6 @@ namespace CohenSutherland
 {
     public class CohenSutherlandCore
     {
-        public static int[] Ops;
-        static CohenSutherlandCore()
-        {
-            Ops = new int[] { 0, 0b1000, 0b0100, 0b0010, 0b0001 };
-        }
-
         public Action Refresh;
         public Func<Vector2>[] Intersects;
         public int yMax, yMin, xMax, xMin;
@@ -60,13 +54,13 @@ namespace CohenSutherland
         {
             int code = 0;
             if (p.y > yMax)
-                code |= Ops[1];
+                code |= 8;
             if (p.y < yMin)
-                code |= Ops[2];
+                code |= 4;
             if (p.x > xMax)
-                code |= Ops[3];
+                code |= 2;
             if (p.x < xMin)
-                code |= Ops[4];
+                code |= 1;
             return code;
         }
 

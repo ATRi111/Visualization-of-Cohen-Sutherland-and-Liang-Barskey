@@ -31,8 +31,8 @@ namespace Services
         /// </summary>
         MoveNext,
         /// <summary>
-        /// 算法状态改变，参数:算法能否继续执行
+        /// 算法能否继续进行下一步
         /// </summary>
-        StateChange,
+        HasNext,
     }
 }

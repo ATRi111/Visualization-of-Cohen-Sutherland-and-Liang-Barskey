@@ -668,7 +668,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Liang-Barskey\u7B97\u6CD5"
+  m_text: "Liang-Barsky\u7B97\u6CD5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e36cc4ed7cc1364a8789b8bb59d1389, type: 2}
   m_sharedMaterial: {fileID: 5496044931569827880, guid: 1e36cc4ed7cc1364a8789b8bb59d1389, type: 2}

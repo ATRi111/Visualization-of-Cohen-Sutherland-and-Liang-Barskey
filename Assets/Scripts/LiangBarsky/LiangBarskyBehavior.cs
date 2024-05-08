@@ -1,25 +1,26 @@
+using LiangBarsky;
 using Services;
 using Services.Event;
 using UnityEngine;
 
 namespace CohenSutherland
 {
-    public class CohenSutherlandBehavior : MonoBehaviour
+    public class LiangBarskyBehavior : MonoBehaviour
     {
-        public static CohenSutherlandBehavior FindInstance()
+        public static LiangBarskyBehavior FindInstance()
         {
-            return GameObject.Find(nameof(CohenSutherlandBehavior)).GetComponent<CohenSutherlandBehavior>();
+            return GameObject.Find(nameof(LiangBarskyBehavior)).GetComponent<LiangBarskyBehavior>();
         }
 
         private IEventSystem eventSystem;
-        private CohenSutherlandCore core;
+        private LiangBarskyCore core;
         private RangeManager rangeManager;
 
         private void Awake()
         {
             rangeManager = GetComponent<RangeManager>();
             eventSystem = ServiceLocator.Get<IEventSystem>();
-            core = new CohenSutherlandCore();
+            core = new LiangBarskyCore();
             core.Refresh += Refresh;
         }
 
@@ -27,14 +28,12 @@ namespace CohenSutherland
         {
             eventSystem.AddListener(EEvent.ResetEdge, ResetEdge);
             eventSystem.AddListener(EEvent.Launch, Launch);
-            eventSystem.AddListener(EEvent.MoveNext, MoveNext);
         }
 
         private void OnDisable()
         {
             eventSystem.RemoveListener(EEvent.ResetEdge, ResetEdge);
             eventSystem.RemoveListener(EEvent.Launch, Launch);
-            eventSystem.RemoveListener(EEvent.MoveNext, MoveNext);
         }
 
 
@@ -50,11 +49,7 @@ namespace CohenSutherland
         private void Refresh()
         {
             eventSystem.Invoke(EEvent.AfterRefreshEdge, core.data as EdgeData);
-            eventSystem.Invoke(EEvent.HasNext, core.isRunning && !core.data.CullOff && !core.data.Cull);
-        }
-        private void MoveNext()
-        {
-            core.MoveNext();
+            eventSystem.Invoke(EEvent.HasNext, core.isRunning);
         }
     }
 }

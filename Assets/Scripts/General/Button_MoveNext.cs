@@ -2,12 +2,12 @@ public class Button_MoveNext : ButtonBase
 {
     private void OnEnable()
     {
-        eventSystem.AddListener<bool>(Services.EEvent.StateChange, AfterStateEdge);
+        eventSystem.AddListener<bool>(Services.EEvent.HasNext, AfterStateEdge);
     }
 
     private void OnDisable()
     {
-        eventSystem.RemoveListener<bool>(Services.EEvent.StateChange, AfterStateEdge);
+        eventSystem.RemoveListener<bool>(Services.EEvent.HasNext, AfterStateEdge);
     }
 
     private void AfterStateEdge(bool state)
