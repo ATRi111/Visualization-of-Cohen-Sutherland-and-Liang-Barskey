@@ -2647,14 +2647,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vertex_CohenSutherland
       objectReference: {fileID: 0}
-    - target: {fileID: 6498710287848825631, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
-      propertyPath: m_text
-      value: P2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7043016976440011436, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.64
-      objectReference: {fileID: 0}
     - target: {fileID: 8806772280238086962, guid: a53d04f97cc41604ebc17a8303ce96bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.87

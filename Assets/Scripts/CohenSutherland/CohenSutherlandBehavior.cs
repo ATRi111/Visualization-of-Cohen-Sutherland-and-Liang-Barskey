@@ -6,11 +6,6 @@ namespace CohenSutherland
 {
     public class CohenSutherlandBehavior : MonoBehaviour
     {
-        public static CohenSutherlandBehavior FindInstance()
-        {
-            return GameObject.Find(nameof(CohenSutherlandBehavior)).GetComponent<CohenSutherlandBehavior>();
-        }
-
         private IEventSystem eventSystem;
         private CohenSutherlandCore core;
         private RangeManager rangeManager;

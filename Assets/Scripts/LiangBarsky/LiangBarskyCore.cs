@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LiangBarsky
 {
-    public class LiangBarskyCore : MonoBehaviour
+    public class LiangBarskyCore
     {
         public Action Refresh;
         public int yMax, yMin, xMax, xMin;
@@ -26,7 +26,7 @@ namespace LiangBarsky
             Vector3 p1 = rangeManager.vertices[0].transform.position;
             Vector3 p2 = rangeManager.vertices[1].transform.position;
             data = new EdgeData_LiangBarsky(p1, p2);
-            data.IntersectAndSort(xMin, xMax, yMin, yMax);
+            data.Intersect(xMin, xMax, yMin, yMax);
             Refresh?.Invoke();
         }
     }

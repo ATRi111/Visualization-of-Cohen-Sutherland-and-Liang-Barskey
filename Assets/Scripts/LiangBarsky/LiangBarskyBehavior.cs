@@ -1,17 +1,11 @@
-using LiangBarsky;
 using Services;
 using Services.Event;
 using UnityEngine;
 
-namespace CohenSutherland
+namespace LiangBarsky
 {
     public class LiangBarskyBehavior : MonoBehaviour
     {
-        public static LiangBarskyBehavior FindInstance()
-        {
-            return GameObject.Find(nameof(LiangBarskyBehavior)).GetComponent<LiangBarskyBehavior>();
-        }
-
         private IEventSystem eventSystem;
         private LiangBarskyCore core;
         private RangeManager rangeManager;
@@ -35,7 +29,6 @@ namespace CohenSutherland
             eventSystem.RemoveListener(EEvent.ResetEdge, ResetEdge);
             eventSystem.RemoveListener(EEvent.Launch, Launch);
         }
-
 
         private void Launch()
         {
