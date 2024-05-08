@@ -24,10 +24,6 @@ namespace LiangBarsky
         {
             base.AfterRefreshEdge(edgeData);
             data = edgeData as EdgeData_LiangBarsky;
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                (vertices[i] as Vertex_LiangBarsky).SetColor(Color.clear);
-            }
             int count = 0;
             for (int i = 0; i < data.ins.Count; i++)
             {
@@ -97,16 +93,12 @@ namespace LiangBarsky
             int count = 0;
             for (int i = 0; i < data.ins.Count; i++)
             {
-                if (data.ins[i] > u)
-                    break;
-                (vertices[count] as Vertex_LiangBarsky).SetColor(inColor);
+                (vertices[count] as Vertex_LiangBarsky).SetColor(data.ins[i] > u ? Color.clear : inColor);
                 count++;
             }
-            for (int i = 0; i < data.ins.Count; i++)
+            for (int i = 0; i < data.outs.Count; i++)
             {
-                if (data.outs[i] > u)
-                    break;
-                (vertices[count] as Vertex_LiangBarsky).SetColor(outColor);
+                (vertices[count] as Vertex_LiangBarsky).SetColor(data.outs[i] > u ? Color.clear : outColor);
                 count++;
             }
         }
