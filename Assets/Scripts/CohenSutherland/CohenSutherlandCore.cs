@@ -8,11 +8,11 @@ namespace CohenSutherland
         public static int[] Ops;
         static CohenSutherlandCore()
         {
-            Ops = new int[] { 0b1111, 0b1000, 0b0100, 0b0010, 0b0001 };
+            Ops = new int[] { 0, 0b1000, 0b0100, 0b0010, 0b0001 };
         }
 
         public Action Refresh;
-        public Func<Vector2>[] Inserts;
+        public Func<Vector2>[] Intersects;
         public int yMax, yMin, xMax, xMin;
 
         public EdgeData_CohenSutherland data;
@@ -33,7 +33,11 @@ namespace CohenSutherland
             Vector3 p1 = rangeManager.vertices[0].transform.position;
             Vector3 p2 = rangeManager.vertices[1].transform.position;
             data = new EdgeData_CohenSutherland(p1, p2, Calculate(p1), Calculate(p2));
-            Inserts = new Func<Vector2>[] { null, Intersect1, Intersect2, Intersect3, Intersect4 };
+            Intersects = new Func<Vector2>[9];
+            Intersects[1] = Intersect0001;
+            Intersects[2] = Intersect0010;
+            Intersects[4] = Intersect0100;
+            Intersects[8] = Intersect1000;
             Refresh?.Invoke();
         }
 
@@ -47,15 +51,8 @@ namespace CohenSutherland
             else
                 code = data.code2;
 
-            for (int i = Ops.Length - 1; i > 0; i--)
-            {
-                if ((code & Ops[i]) != 0)
-                {
-                    p = Inserts[i].Invoke();
-                    code = Calculate(p);
-                    break;
-                }
-            }
+            p = Intersects[code & (~code + 1)]();   //计算code最后一位1
+            code = Calculate(p);
 
             if (data.code1 != 0)
             {
@@ -84,13 +81,13 @@ namespace CohenSutherland
             return code;
         }
 
-        public Vector2 Intersect1()
+        public Vector2 Intersect1000()
             => data.IntersectY(yMax);
-        public Vector2 Intersect2()
+        public Vector2 Intersect0100()
             => data.IntersectY(yMin);
-        public Vector2 Intersect3()
+        public Vector2 Intersect0010()
             => data.IntersectX(xMax);
-        public Vector2 Intersect4()
-            => data.IntersectX(yMin);
+        public Vector2 Intersect0001()
+            => data.IntersectX(xMin);
     }
 }
