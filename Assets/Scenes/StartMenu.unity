@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36590e880ab4e5a458d0b0de9d422c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: LiangBarskey
+  sceneName: LiangBarsky
 --- !u!1 &243889534
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,26 +43,15 @@ namespace CohenSutherland
 
         public void MoveNext()
         {
-            int code;
-            Vector3 p = default;
-
-            if (data.code1 != 0)
-                code = data.code1;
-            else
-                code = data.code2;
-
-            p = Intersects[code & (~code + 1)]();   //计算code最后一位1
-            code = Calculate(p);
-
-            if (data.code1 != 0)
+            if(data.code1 != 0)
             {
-                data.code1 = code;
-                data.p1 = p;
+                data.p1 = Intersects[data.code1 & (~data.code1 + 1)](); 
+                data.code1 = Calculate(data.p1);
             }
             else
             {
-                data.code2 = code;
-                data.p2 = p;
+                data.p2 = Intersects[data.code2 & (~data.code2 + 1)](); 
+                data.code2 = Calculate(data.p2);
             }
             Refresh?.Invoke();
         }

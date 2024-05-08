@@ -3,6 +3,7 @@ using UnityEngine;
 public class RangeManager : MonoBehaviour
 {
     public RectInt range;
+    public int extend;
 
     [SerializeField]
     private AreaPanelManager areaManager;
@@ -15,7 +16,7 @@ public class RangeManager : MonoBehaviour
 
     private int[] xs;
     private int[] ys;
-
+    
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -32,8 +33,8 @@ public class RangeManager : MonoBehaviour
     private void Start()
     {
         areaManager.SetAreas(xs, ys);
-        gridGenerator.GenerateLine(range, xs, ys);
-        gridGenerator.GenerateGrid(range);
+        gridGenerator.GenerateLine(range, xs, ys, extend * 2 + 2f, false);
+        gridGenerator.GenerateGrid(range, extend);
     }
 
     private void Update()
