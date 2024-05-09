@@ -39,7 +39,6 @@ namespace LiangBarsky
                 count++;
             }
             SetLineRange();
-            lineRenderer.enabled = true;
         }
 
         private void SetLineRange()
@@ -75,6 +74,7 @@ namespace LiangBarsky
 
         private void OnTick(float u)
         {
+            lineRenderer.enabled = true;
             SetColor(u);
             Vector3[] points = new Vector3[] { data.R(linear.Origin), data.R(u) };
             lineRenderer.SetPositions(points);
