@@ -25,6 +25,7 @@ namespace LiangBarsky
             base.AfterRefreshEdge(edgeData);
             data = edgeData as EdgeData_LiangBarsky;
             int count = 0;
+            SetColor(float.MinValue);
             for (int i = 0; i < data.ins.Count; i++)
             {
                 vertices[count].transform.position = data.R(data.ins[i]);
