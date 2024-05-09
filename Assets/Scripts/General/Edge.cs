@@ -6,14 +6,14 @@ using UnityEngine;
 public class Edge : MonoBehaviour
 {
     protected IEventSystem eventSystem;
-    protected LineRenderer lineRenderer;
+    protected LineRendererPlus lineRenderer;
     protected Vertex[] vertices;
 
     protected TextMeshProUGUI tmp;
 
     protected virtual void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer = GetComponent<LineRendererPlus>();
         eventSystem = ServiceLocator.Get<IEventSystem>();
         tmp = GetComponentInChildren<TextMeshProUGUI>();
         vertices = GetComponentsInChildren<Vertex>();
@@ -33,11 +33,11 @@ public class Edge : MonoBehaviour
 
     protected virtual void AfterResetEdge()
     {
-        lineRenderer.enabled = false;
+        lineRenderer.Visible = false;
     }
 
     protected virtual void AfterRefreshEdge(EdgeData edgeData)
     {
-        
+        lineRenderer.Visible = true;
     }
 }

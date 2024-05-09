@@ -19,7 +19,7 @@ public class RangeManager : MonoBehaviour
     
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer = GetComponentInChildren<LineRenderer>();
         gridGenerator = GetComponent<GridGenerator>();
         vertices = GetComponentsInChildren<DraggableVertex>();
         xs = new int[] { range.xMin, xMin, xMax, range.xMax };

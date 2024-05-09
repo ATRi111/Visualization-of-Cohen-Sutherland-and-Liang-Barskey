@@ -16,7 +16,9 @@ namespace CohenSutherland
             (vertices[0] as Vertex_CohenSutherland).SetCode(data.code1);
             (vertices[1] as Vertex_CohenSutherland).SetCode(data.code2);
 
-            lineRenderer.enabled = !data.Cull;
+            if (data.Cull)
+                lineRenderer.Visible = false;
+            lineRenderer.SetMaterial(data.CullOff ? 1 : 0);
             lineRenderer.SetPositions(line);
         }
     }

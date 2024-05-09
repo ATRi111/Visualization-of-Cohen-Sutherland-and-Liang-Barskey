@@ -74,7 +74,8 @@ namespace LiangBarsky
 
         private void OnTick(float u)
         {
-            lineRenderer.enabled = true;
+            lineRenderer.Visible = true;
+            lineRenderer.SetMaterial(0);
             SetColor(u);
             Vector3[] points = new Vector3[] { data.R(linear.Origin), data.R(u) };
             lineRenderer.SetPositions(points);
@@ -83,10 +84,8 @@ namespace LiangBarsky
         private void AfterComplete(float u)
         {
             SetColor(u);
-            if(data.result.Count == 2)
-                lineRenderer.SetPositions(data.result.ToArray());
-            else
-                lineRenderer.enabled = false;
+            lineRenderer.SetMaterial(1);
+            lineRenderer.SetPositions(data.result.ToArray());
         }
 
         private void SetColor(float u)
