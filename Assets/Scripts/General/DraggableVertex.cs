@@ -1,5 +1,6 @@
 using Services;
 using Services.Event;
+using TMPro;
 using Tools;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,8 @@ public class DraggableVertex : MonoBehaviour, IDragHandler
     [HideInInspector]
     public Rect range;
     private bool draggable;
+    [SerializeField]
+    private TextMeshProUGUI location;
     private IEventSystem eventSystem;
 
     protected virtual void Awake()
@@ -37,6 +40,13 @@ public class DraggableVertex : MonoBehaviour, IDragHandler
     private void AfterRefreshEdge(EdgeData _)
     {
         draggable = false;
+    }
+
+    private void Update()
+    {
+        static string Format(Vector2 v)
+            => $"({v.x:f1},{v.y:f1})";
+        location.text = Format(transform.position);
     }
 
     public void OnDrag(PointerEventData eventData)
