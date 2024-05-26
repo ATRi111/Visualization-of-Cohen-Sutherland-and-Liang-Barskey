@@ -40,18 +40,12 @@ namespace LiangBarsky
                 points.Add(R(u2));
             }
 
-            if (r.x != 0)
-            {
-                u1 = UX(xMin);
-                u2 = UX(xMax);
-                AddPair();
-            }
-            if(r.y != 0)
-            {
-                u1 = UY(yMin);
-                u2 = UY(yMax);
-                AddPair();
-            }
+            u1 = UX(xMin);
+            u2 = UX(xMax);
+            AddPair();
+            u1 = UY(yMin);
+            u2 = UY(yMax);
+            AddPair();
 
             ins.Sort(); 
             outs.Sort();

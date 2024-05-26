@@ -7,7 +7,7 @@ public class RangeManager : MonoBehaviour
 
     [SerializeField]
     private AreaPanelManager areaManager;
-    private LineRenderer lineRenderer;
+    private LineRendererPlus lineRenderer;
     private GridGenerator gridGenerator;
 
     [HideInInspector]
@@ -19,7 +19,8 @@ public class RangeManager : MonoBehaviour
     
     private void Awake()
     {
-        lineRenderer = GetComponentInChildren<LineRenderer>();
+        lineRenderer = GetComponentInChildren<LineRendererPlus>();
+        lineRenderer.Visible = true;
         gridGenerator = GetComponent<GridGenerator>();
         vertices = GetComponentsInChildren<DraggableVertex>();
         xs = new int[] { range.xMin, xMin, xMax, range.xMax };

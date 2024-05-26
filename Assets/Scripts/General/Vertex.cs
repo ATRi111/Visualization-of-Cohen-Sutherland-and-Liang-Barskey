@@ -10,6 +10,19 @@ public class Vertex : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected Image image;
 
+
+    private bool visible;
+    public bool Visible
+    {
+        get => visible;
+        set
+        {
+            visible = value;
+            spriteRenderer.enabled = value;
+            canvas.SetActive(value);
+        }
+    }
+
     protected virtual void Awake()
     {
         eventSystem = ServiceLocator.Get<IEventSystem>();
@@ -31,14 +44,8 @@ public class Vertex : MonoBehaviour
     }
 
     private void AfterResetEdge()
-    {
-        spriteRenderer.enabled = false;
-        canvas.SetActive(false);
-    }
+        => Visible = false;
 
     private void AfterRefreshEdge(EdgeData _)
-    {
-        spriteRenderer.enabled = true;
-        canvas.SetActive(true);
-    }
+        => Visible = true;
 }

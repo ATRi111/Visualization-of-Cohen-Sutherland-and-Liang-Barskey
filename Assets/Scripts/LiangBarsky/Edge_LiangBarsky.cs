@@ -5,7 +5,47 @@ namespace LiangBarsky
 {
     public class Edge_LiangBarsky : Edge
     {
+        private class VertexAnim : Metronome
+        {
+            private EdgeData_LiangBarsky data;
+            private Vertex[] vertices;
+            private LineRendererPlus lineRenderer;
+            private int[] order;
+            public int count;
+
+            public VertexAnim()
+            {
+                order = new int[] { 0, 1, 5, 4};
+            }
+
+            public void Initialize(float duration, EdgeData_LiangBarsky data, LineRendererPlus lineRenderer, Vertex[] vertices, bool start = true)
+            {
+                base.Initialize(duration, start);
+                this.data = data;
+                this.vertices = vertices;
+                this.lineRenderer = lineRenderer;
+                count = 0;
+            }
+
+            protected override void AfterComplete_(float _)
+            {
+                if (count < 5) 
+                {
+                    if(count < 4)
+                        vertices[order[count]].Visible = false;
+                    count++;
+                    Restart(true);
+                }
+                else
+                {
+                    lineRenderer.SetMaterial(1);
+                    lineRenderer.SetPositions(data.result.ToArray());
+                }
+            }
+        }
+
         private LinearTransformation linear;
+        private VertexAnim anim;
         private EdgeData_LiangBarsky data;
         private RangeManager rangeManager;
         public Color inColor;
@@ -15,8 +55,9 @@ namespace LiangBarsky
         {
             base.Awake();
             linear = new LinearTransformation();
-            linear.OnTick += OnTick;
-            linear.AfterCompelete += AfterComplete;
+            anim = new VertexAnim();
+            linear.OnTick += OnTick_Linear;
+            linear.AfterCompelete += AfterComplete_Linear;
             rangeManager = GameObject.Find(nameof(LiangBarskyBehavior)).GetComponent<RangeManager>();
         }
 
@@ -72,7 +113,7 @@ namespace LiangBarsky
             linear.Initialize(min, max, 2f);
         }
 
-        private void OnTick(float u)
+        private void OnTick_Linear(float u)
         {
             lineRenderer.Visible = true;
             lineRenderer.SetMaterial(0);
@@ -81,11 +122,10 @@ namespace LiangBarsky
             lineRenderer.SetPositions(points);
         }
 
-        private void AfterComplete(float u)
+        private void AfterComplete_Linear(float u)
         {
-            SetColor(u);
-            lineRenderer.SetMaterial(1);
-            lineRenderer.SetPositions(data.result.ToArray());
+            SetColor(1f);
+            anim.Initialize(1f, data, lineRenderer, vertices);
         }
 
         private void SetColor(float u)
