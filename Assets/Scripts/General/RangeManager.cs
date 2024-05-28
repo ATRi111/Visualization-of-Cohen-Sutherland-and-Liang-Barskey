@@ -20,7 +20,6 @@ public class RangeManager : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponentInChildren<LineRendererPlus>();
-        lineRenderer.Visible = true;
         gridGenerator = GetComponent<GridGenerator>();
         vertices = GetComponentsInChildren<DraggableVertex>();
         xs = new int[] { range.xMin, xMin, xMax, range.xMax };
@@ -33,6 +32,7 @@ public class RangeManager : MonoBehaviour
 
     private void Start()
     {
+        lineRenderer.Visible = true;
         areaManager.SetAreas(xs, ys);
         gridGenerator.GenerateLine(range, xs, ys, extend * 2 + 2f, false);
         gridGenerator.GenerateGrid(range, extend);
