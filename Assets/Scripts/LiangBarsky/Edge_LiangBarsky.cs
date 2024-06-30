@@ -10,7 +10,7 @@ namespace LiangBarsky
             private EdgeData_LiangBarsky data;
             private Vertex[] vertices;
             private LineRendererPlus lineRenderer;
-            private int[] order;
+            private readonly int[] order;
             public int count;
 
             public VertexAnim()
@@ -24,14 +24,14 @@ namespace LiangBarsky
                 this.data = data;
                 this.vertices = vertices;
                 this.lineRenderer = lineRenderer;
-                count = 0;
+                count = -2;
             }
 
             protected override void AfterComplete_(float _)
             {
                 if (count < 5) 
                 {
-                    if(count < 4)
+                    if(count < 4 && count >= 0)
                         vertices[order[count]].Visible = false;
                     count++;
                     Restart(true);
@@ -124,8 +124,8 @@ namespace LiangBarsky
 
         private void AfterComplete_Linear(float u)
         {
-            SetColor(1f);
-            anim.Initialize(1f, data, lineRenderer, vertices);
+            SetColor(float.MaxValue);
+            anim.Initialize(0.5f, data, lineRenderer, vertices);
         }
 
         private void SetColor(float u)
@@ -133,12 +133,12 @@ namespace LiangBarsky
             int count = 0;
             for (int i = 0; i < data.ins.Count; i++)
             {
-                (vertices[count] as Vertex_LiangBarsky).SetColor(data.ins[i] > u ? Color.clear : inColor);
+                (vertices[count] as Vertex_LiangBarsky).SetColor(data.ins[i] >= u ? Color.clear : inColor);
                 count++;
             }
             for (int i = 0; i < data.outs.Count; i++)
             {
-                (vertices[count] as Vertex_LiangBarsky).SetColor(data.outs[i] > u ? Color.clear : outColor);
+                (vertices[count] as Vertex_LiangBarsky).SetColor(data.outs[i] >= u ? Color.clear : outColor);
                 count++;
             }
         }
